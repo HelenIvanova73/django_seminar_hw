@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <form method="get" action="{% url 'twoapp:list_order' %}">
+        <button type="submit" name="days" value="7">Last 7 days</button>
+        <button type="submit" name="days" value="30">Last 30 days</button>
+        <button type="submit" name="days" value="365">Last 365 days</button>
+    </form>
+
+    {% for item in orders %}
+        <p>{{ item.client.name }}</p>
+        <p>{{ item.date_registration }}</p>
+        {% for product in item.products.all %}
+            <p>{{ product.name }}</p>
+            <p>{{ product.price }}</p>
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <form action="{% url 'twoapp:galerie' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_ul }}
+
+        <!-- Кнопка подтверждения -->
+        <button type="submit">Подтвердить</button>
+    </form>
+</body>
+</html>
